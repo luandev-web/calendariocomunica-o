@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login - Calendário da Igreja</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Inter;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+}
+
+.login-box{
+    background:white;
+    padding:40px;
+    width:320px;
+    border-radius:10px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+}
+
+h2{
+    margin-bottom:20px;
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:6px;
+    border:1px solid #ddd;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:6px;
+    background:#2563eb;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.erro{
+    color:red;
+    margin-top:10px;
+    text-align:center;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="login-box">
+
+<h2>Login</h2>
+
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="senha" placeholder="Senha">
+
+<button onclick="login()">Entrar</button>
+
+<div class="erro" id="erro"></div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAutovMl_ObLrnFPlx52tv046bXgP5REew",
+  authDomain: "comunicacaoiasd-deafd.firebaseapp.com",
+  projectId: "comunicacaoiasd-deafd",
+  storageBucket: "comunicacaoiasd-deafd.firebasestorage.app",
+  messagingSenderId: "574976826729",
+  appId: "1:574976826729:web:39400c3f629c821b5ff1f8"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.login = function(){
+
+const email = document.getElementById("email").value;
+const senha = document.getElementById("senha").value;
+
+signInWithEmailAndPassword(auth,email,senha)
+
+.then(() => {
+
+window.location.href = "public/index.html";
+
+})
+
+.catch((error)=>{
+
+document.getElementById("erro").innerText="Email ou senha inválidos";
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

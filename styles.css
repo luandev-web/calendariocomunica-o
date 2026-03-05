@@ -1,0 +1,982 @@
+/**
+ * Estilos CSS - Sistema de Eventos da Igreja
+ * Design moderno, elegante e minimalista com alto contraste
+ */
+
+/* ==========================================
+   VARIÁVEIS E RESET
+   ========================================== */
+
+:root {
+    /* Cores principais - Tons mais fortes para melhor contraste */
+    --primary: #1d4ed8;
+    --primary-dark: #1e3a8a;
+    --primary-light: #3b82f6;
+    --secondary: #475569;
+    
+    /* Cores de status */
+    --success: #059669;
+    --danger: #dc2626;
+    --warning: #d97706;
+    
+    /* Cores neutras - Ajustadas para maior contraste */
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #cbd5e1; /* Mais escuro que o original (era e2e8f0) */
+    --gray-300: #94a3b8; /* Mais escuro que o original (era cbd5e1) */
+    --gray-400: #64748b; /* Mais escuro que o original (era 94a3b8) */
+    --gray-500: #475569; /* Mais escuro que o original (era 64748b) */
+    --gray-600: #334155; /* Mais escuro que o original (era 475569) */
+    --gray-700: #1e293b; /* Mais escuro que o original (era 334155) */
+    --gray-800: #0f172a; /* Mais escuro que o original (era 1e293b) */
+    --gray-900: #020617; /* Mais escuro que o original (era 0f172a) */
+    
+    /* Cores dos departamentos - Saturadas para melhor legibilidade sobre branco */
+    --dept-louvor: #7c3aed;
+    --dept-jovens: #2563eb;
+    --dept-infantil: #db2777;
+    --dept-administrativo: #475569;
+    --dept-missoes: #ea580c;
+    --dept-casais: #dc2626;
+    --dept-mulheres: #e11d48;
+    --dept-homens: #4f46e5;
+    --dept-diaconia: #0d9488;
+    --dept-ensino: #65a30d;
+    
+    /* Tipografia */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    
+    /* Espaçamentos */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    
+    /* Bordas e sombras */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    
+    /* Transições */
+    --transition: all 0.2s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--gray-100);
+    color: var(--gray-800);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+/* ==========================================
+   CABEÇALHO MINIMALISTA
+   ========================================== */
+
+.header {
+    background: var(--gray-800);
+    padding: var(--space-3) var(--space-6);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header h1 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.header h1 i {
+    font-size: 1rem;
+    opacity: 1;
+}
+
+/* ==========================================
+   LAYOUT PRINCIPAL
+   ========================================== */
+
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--space-6);
+}
+
+.layout-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: var(--space-6);
+    align-items: start;
+}
+
+/* ==========================================
+   CARDS
+   ========================================== */
+
+.card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-300); /* Borda mais visível */
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4) var(--space-5);
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-300); /* Borda mais visível */
+}
+
+.card-header h2 {
+    font-size: 0.95rem;
+    font-weight: 700; /* Mais negrito */
+    color: var(--gray-800); /* Mais escuro */
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.card-header h2 i {
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+/* ==========================================
+   SIDEBAR / FORMULÁRIO
+   ========================================== */
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    position: sticky;
+    top: 80px;
+}
+
+.card-form {
+    transition: var(--transition);
+}
+
+.form-evento {
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.form-evento.hidden {
+    display: none;
+}
+
+.form-row {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    font-weight: 600; /* Mais negrito */
+    color: var(--gray-700); /* Mais escuro */
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.form-group label i {
+    color: var(--gray-500); /* Mais escuro */
+    font-size: 0.75rem;
+}
+
+.label-optional {
+    font-weight: 400;
+    color: var(--gray-500);
+    font-size: 0.7rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: var(--space-3);
+    border: 1px solid var(--gray-400);
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: var(--transition);
+    background: var(--white);
+    color: var(--gray-900);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.2);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--gray-500);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.form-actions {
+    display: flex;
+    gap: var(--space-2);
+    padding-top: var(--space-2);
+}
+
+/* ==========================================
+   BOTÕES
+   ========================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 600; /* Mais negrito */
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn i {
+    font-size: 0.8rem;
+}
+
+.btn-primary {
+    flex: 1;
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--gray-700);
+    border: 1px solid var(--gray-400);
+}
+
+.btn-ghost:hover {
+    background: var(--gray-100);
+    color: var(--gray-900);
+}
+
+.btn-outline {
+    background: var(--white);
+    color: var(--gray-700);
+    border: 1px solid var(--gray-400);
+}
+
+.btn-outline:hover {
+    background: var(--gray-50);
+    border-color: var(--gray-600);
+}
+
+.btn-success {
+    background: var(--success);
+    color: var(--white);
+}
+
+.btn-success:hover {
+    background: #047857;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: var(--white);
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon:hover {
+    background: var(--gray-200);
+    color: var(--gray-900);
+}
+
+.btn-icon i {
+    transition: var(--transition);
+}
+
+.btn-icon.collapsed i {
+    transform: rotate(180deg);
+}
+
+.btn-nav {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    color: var(--gray-800);
+    font-weight: bold;
+}
+
+.btn-nav:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+}
+
+.btn-sm {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.8rem;
+}
+
+/* ==========================================
+   LEGENDA
+   ========================================== */
+
+.card-legend {
+    padding: var(--space-4);
+}
+
+.card-legend h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-3);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.card-legend h3 i {
+    color: var(--gray-600);
+}
+
+.legend-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+}
+
+.legend-item {
+    font-size: 0.7rem;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-weight: 600;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+.legend-item i {
+    font-size: 0.6rem;
+}
+
+/* ==========================================
+   CALENDÁRIO
+   ========================================== */
+
+.calendar-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-300);
+}
+
+.nav-controls {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.nav-title {
+    text-align: center;
+}
+
+.nav-month {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800; /* Mais negrito */
+    color: var(--gray-900);
+}
+
+.nav-year {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    font-weight: 600;
+}
+
+.calendar-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.month-pills {
+    display: flex;
+    gap: var(--space-1);
+    flex-wrap: wrap;
+}
+
+.pill {
+    padding: var(--space-2) var(--space-3);
+    border: none;
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gray-700);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pill:hover {
+    background: var(--gray-100);
+    border-color: var(--gray-400);
+    color: var(--gray-900);
+}
+
+.pill.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+}
+
+.action-buttons {
+    display: flex;
+    gap: var(--space-2);
+}
+
+/* Container do Calendário */
+.calendario-container {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+}
+
+.calendario-header-export {
+    text-align: center;
+    padding: var(--space-4);
+    background: var(--gray-50);
+    border-bottom: 2px solid var(--gray-300);
+    display: none;
+}
+
+.calendario-header-export h3 {
+    font-size: 1.2rem;
+    color: var(--gray-900);
+    font-weight: 800;
+}
+
+.calendario-header-export p {
+    font-size: 0.85rem;
+    color: var(--gray-700);
+    font-weight: 600;
+}
+
+.calendario {
+    overflow: hidden;
+    border: 1px solid var(--gray-400) !important; /* Borda única externa para todo o calendário */
+    border-radius: var(--radius-md);
+}
+
+.calendario-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: var(--gray-800) !important;
+    height: 50px !important;
+    box-sizing: border-box !important;
+    border-bottom: 1px solid var(--gray-800) !important; /* Linha de base para o cabeçalho */
+}
+
+.dia-semana {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: 0.75rem !important;
+    font-weight: 900 !important;
+    color: var(--white) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.dia-semana:last-child {
+    border-right: none !important;
+}
+
+.dia-semana.dom {
+    color: #fecaca; /* Vermelho mais claro para contraste com fundo escuro */
+}
+
+.dia-semana.sab {
+    color: #bfdbfe; /* Azul mais claro para contraste com fundo escuro */
+}
+
+.calendario-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: var(--white) !important;
+    gap: 0 !important;
+    border: none !important; /* Remove bordas internas da grid para usar a do container */
+}
+
+.dia {
+    min-height: 110px;
+    padding: var(--space-2);
+    background: var(--white) !important;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    box-sizing: border-box !important;
+    border-right: 1px solid var(--gray-400) !important;
+    border-bottom: 1px solid var(--gray-400) !important;
+}
+
+.dia:nth-child(7n) {
+    border-right: none !important; /* Remove borda direita na última coluna */
+}
+
+.dia:nth-last-child(-n+7) {
+    border-bottom: none !important; /* Remove borda inferior na última linha */
+}
+
+.dia:hover {
+    background: var(--gray-50);
+    z-index: 1;
+    box-shadow: inset 0 0 0 2px var(--primary);
+}
+
+.dia.outro-mes {
+    background: #f8fafc;
+}
+
+.dia.outro-mes .dia-numero span:first-child {
+    color: var(--gray-400); /* Cinza mais visível que o original */
+    opacity: 0.6;
+}
+
+.dia.hoje {
+    background: #eff6ff;
+}
+
+.dia.hoje .dia-numero span:first-child {
+    background: var(--primary);
+    color: var(--white);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.dia.tem-evento {
+    background: #fffbeb;
+}
+
+.dia-numero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2);
+}
+
+.dia-numero span:first-child {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--gray-900);
+}
+
+.eventos-count {
+    font-size: 0.7rem;
+    color: var(--gray-700);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.eventos-count i {
+    font-size: 0.65rem;
+    color: var(--primary);
+}
+
+.dia-eventos {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 80px;
+    overflow: hidden;
+}
+
+/* Chips de Evento */
+.evento-chip {
+    font-size: 0.7rem;
+    padding: 5px 8px;
+    border-radius: 6px;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    line-height: 1.2;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-left: 3px solid rgba(255,255,255,0.3);
+}
+
+.evento-chip-titulo {
+    font-weight: 700;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.evento-chip-info {
+    font-size: 0.6rem;
+    opacity: 1; /* Opacidade total para contraste */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-weight: 500;
+}
+
+.evento-chip-info i {
+    font-size: 0.55rem;
+}
+
+.evento-mais {
+    font-size: 0.7rem;
+    color: var(--primary);
+    text-align: center;
+    font-weight: 800;
+    padding-top: 2px;
+}
+
+/* Cores dos departamentos */
+.dept-louvor, .evento-chip.dept-louvor { background: var(--dept-louvor); }
+.dept-jovens, .evento-chip.dept-jovens { background: var(--dept-jovens); }
+.dept-infantil, .evento-chip.dept-infantil { background: var(--dept-infantil); }
+.dept-administrativo, .evento-chip.dept-administrativo { background: var(--dept-administrativo); }
+.dept-missoes, .evento-chip.dept-missoes { background: var(--dept-missoes); }
+.dept-casais, .evento-chip.dept-casais { background: var(--dept-casais); }
+.dept-mulheres, .evento-chip.dept-mulheres { background: var(--dept-mulheres); }
+.dept-homens, .evento-chip.dept-homens { background: var(--dept-homens); }
+.dept-diaconia, .evento-chip.dept-diaconia { background: var(--dept-diaconia); }
+.dept-ensino, .evento-chip.dept-ensino { background: var(--dept-ensino); }
+
+/* ==========================================
+   MODAL
+   ========================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(2, 6, 23, 0.8); /* Mais escuro */
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-4);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    max-width: 520px;
+    width: 100%;
+    max-height: 85vh;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-300);
+    animation: modalSlideIn 0.2s ease;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4) var(--space-5);
+    background: var(--gray-800);
+    color: var(--white);
+}
+
+.modal-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.modal-close {
+    color: var(--white);
+    opacity: 0.9;
+    font-size: 1.2rem;
+}
+
+.modal-body {
+    padding: var(--space-5);
+    max-height: 65vh;
+    overflow-y: auto;
+}
+
+.evento-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    border: 1px solid var(--gray-200);
+    border-left: 6px solid var(--primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.evento-card h4 {
+    font-size: 1.1rem;
+    color: var(--gray-900);
+    margin-bottom: var(--space-2);
+    font-weight: 800;
+}
+
+.evento-card p {
+    font-size: 0.9rem;
+    color: var(--gray-800);
+    margin-bottom: var(--space-2);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 500;
+}
+
+.evento-card p i {
+    color: var(--primary);
+    width: 16px;
+}
+
+.departamento-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+    color: var(--white);
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-top: var(--space-2);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+/* ==========================================
+   TOAST / NOTIFICAÇÕES
+   ========================================== */
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--gray-900);
+    color: var(--white);
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transform: translateX(150%);
+    transition: var(--transition);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .layout-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-4);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        padding: var(--space-4);
+    }
+    
+    .sidebar {
+        grid-template-columns: 1fr;
+    }
+    
+    .calendar-nav {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+    
+    .dia {
+        min-height: 80px;
+    }
+}
+
+/* ==========================================
+   EXPORTAÇÃO PNG
+   ========================================== */
+
+.calendario-container.exportando {
+    padding: var(--space-6);
+    background: var(--white);
+    border: none;
+    box-shadow: none;
+}
+
+.calendario-container.exportando .calendario-header-export {
+    display: block;
+    border-bottom: 2px solid var(--primary);
+    margin-bottom: var(--space-4);
+    background: transparent;
+}
+
+.calendario-container.exportando .calendario {
+    border: 2px solid var(--gray-800) !important;
+    border-radius: var(--radius-md);
+    box-shadow: none !important;
+}
+
+.calendario-container.exportando .calendario-grid {
+    border-left: 1px solid var(--gray-400) !important;
+    border-top: 1px solid var(--gray-400) !important;
+    background: var(--white) !important;
+}
+
+.calendario-container.exportando .dia {
+    border-right: 1px solid var(--gray-400) !important;
+    border-bottom: 1px solid var(--gray-400) !important;
+    background: var(--white) !important;
+}
+
+.calendario-container.exportando .dia.outro-mes {
+    background: var(--gray-50) !important;
+}
+
+.calendario-container.exportando .dia.hoje {
+    background: #eff6ff !important;
+}
+
+.calendario-container.exportando .dia.tem-evento {
+    background: #fffbeb !important;
+}
+
+.calendario-container.exportando .evento-chip {
+    box-shadow: none !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+}
