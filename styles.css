@@ -723,7 +723,7 @@ body {
 .evento-chip-info {
     font-size: 0.6rem;
     opacity: 1; /* Opacidade total para contraste */
-    white-space: nowrap;
+    white-space:wrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: flex;
